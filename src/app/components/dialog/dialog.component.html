@@ -1,0 +1,41 @@
+<div class="confirm-dialog my-custom-dialog-class">
+    <div class="container">
+        <div class="row" style="text-align: center;">
+            <h1 [ngClass]="{'color-error': data.typeDialog==='error','color-warning': data.typeDialog==='warning','color-success': data.typeDialog==='success'}" >               
+                {{data && data.title? data.title: 'Dialog'}}
+            </h1>
+        </div>
+        
+        <div class="container"><hr></div>
+
+        <div class="row" style="text-align: center;">
+            <div class="col-12">
+                <mat-dialog-content class="confirm-dialog-content">
+                    <h1 [ngClass]="{'color-error': data.typeDialog==='error','color-warning': data.typeDialog==='warning','color-success': data.typeDialog==='success'}" >               
+                        <span *ngIf="data.typeDialog==='error'"><mat-icon style="transform: scale(2);">highlight_off</mat-icon></span>
+                        <span *ngIf="data.typeDialog==='success'"><mat-icon style="transform: scale(2);">check_circle_outline</mat-icon></span>
+                        <span *ngIf="data.typeDialog==='warning'"><mat-icon style="transform: scale(2);">warning</mat-icon></span>
+                        <span *ngIf="data.typeDialog=== null || data.typeDialog === undefined"><mat-icon style="transform: scale(2);">bug_report</mat-icon></span>
+                    </h1>
+                </mat-dialog-content>
+            </div>
+        </div> 
+        <div class="row" style="text-align: center;">
+            <div class="col-12">
+                <mat-dialog-content class="confirm-dialog-content">
+                    <b> {{data && data.message? data.message: 'Are you sure to do this?'}} </b>
+                </mat-dialog-content>
+            </div>
+        </div>
+        
+        <div class="container"><hr></div>
+
+        <div class="row">
+            <mat-dialog-actions class="confirm-dialog-action">
+                <button mat-raised-button *ngIf="data.fechar" [mat-dialog-close]="ACTION_CANCEL" class="primary">{{data && data.textBtnFechar? data.textBtnFechar: 'Fechar'}}</button>
+                <button mat-raised-button *ngIf="data.confirm" [mat-dialog-close]="ACTION_CONFIRM" class="accent" >CONFIRMAR</button>
+                <button mat-raised-button *ngIf="data.baixar" [mat-dialog-close]="ACTION_CONFIRM" class="accent" >BAIXAR</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>

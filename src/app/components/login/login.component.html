@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body class="w-full h-[100vh]">
+   <div class="w-full h-full flex items-center justify-center bg-gradient-to-tr from-stone-50  to-stone-300">
+      <div class="w-[35%] h-[50%] min-w-[400px] min-h-[50%] flex flex-col items-center justify-center bg-stone-100 shadow-md bg-blend-lighten ">
+        <div class="flex flex-col w-[100%] items-center justify-center mb-10">
+          <h1 class="text-3xl mb-4">CheckList</h1>
+          <div class="w-full border-b-2 border-bg-100 flex items-end justify-center">
+              <a class="mr-2 ml-2 border-b-2 border-black mb-[-1px] cursor-pointer">login</a>
+              <a class="mr-2 ml-2 cursor-pointer" routerLink="/register">cadastro</a>
+          </div>
+        </div>
+        <form #loginForm="ngForm" class="w-full">
+          <div class="flex flex-col w-full  items-center justify-center mb-10">
+            <div class="w-[80%]">
+              <label>Login:</label>
+              <div class="w-full">
+                <input type="text" id="login" [(ngModel)]="user.email" name="email" class="w-[100%] p-2 border-b-2 border-b-gray-200 border-solid">
+              </div>
+            </div>  
+          </div>
+          <div class="flex flex-col w-full  items-center justify-center mb-10">
+            <div class="w-[80%]">
+              <label>Senha:</label>
+              <div class="w-full">
+                  <input type="password" id="senha" [(ngModel)]="user.password" name="password" class="w-[100%] p-2 border-b-2 border-b-gray-200 border-solid">
+              </div>
+            </div>  
+          </div>
+          <div class="flex flex-col w-[100%] items-center justify-center mb-4">
+              <div>
+                <button (click)="login()" class="w-[150px] bg-white p-2 rounded-md shadow-sm">logar</button>
+              </div>  
+          </div>
+        </form>
+      </div>
+   </div>
+</body>
+</html>

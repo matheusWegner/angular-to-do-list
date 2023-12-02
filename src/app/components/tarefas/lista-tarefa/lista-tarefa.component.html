@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body class="w-full h-[100vh]">
+   <div class="w-full h-full flex items-center justify-center bg-gradient-to-tr from-stone-50  to-stone-300">
+      <div class="w-[50%] h-[80%] min-w-[400px] min-h-[50%] flex flex-col items-center justify-start bg-stone-100 shadow-md bg-blend-lighten ">
+        <div class="flex flex-col w-[100%] items-center justify-center mb-2">
+            <div class="w-full border-b-2 border-bg-100 flex justify-between">
+              <h1 class="text-3xl m-4">CheckList</h1>
+              <i class="fa-solid fa-plus fa-2x m-4 cursor-pointer" routerLink="/cadastro-tarefa"></i>
+            </div>
+        </div>
+        <div class="flex  w-[100%] items-center justify-center mb-2">
+             <!--<ul class="flex list-none text-blue-950 font-bold">
+                 <li class="mx-10 my-1 antialiased relative"><i class="fa-solid fa-chevron-left"></i></li>
+                 <li class="my-1 mx-2 antialiased opacity-50 top-1 relative">11</li>
+                 <li class="my-1 mx-2 antialiased border-b-2 border-blue-950 h-[25px]">today</li>
+                 <li class="my-1 mx-2 antialiased opacity-50 top-1 relative">13</li>
+                 <li class="mx-10 my-1 antialiased relative"><i class="fa-solid fa-chevron-right"></i></li>
+             </ul>-->
+            <input [(ngModel)]="data" (dateChange)="onDateChange()" name="data"  placeholder="DD/MM/YYY" [matDatepicker]="picker" class=" relative  p-2 border-b-2 border-b-gray-200 border-solid">
+            <mat-datepicker-toggle matIconSuffix [for]="picker" class="  mr-10"></mat-datepicker-toggle>
+            <mat-datepicker (change)="getTarefasUserByData()" #picker></mat-datepicker>
+        </div>
+        <div class="flex flex-col w-[100%]  mb-10 overflow-y-auto">
+            <div  *ngFor="let tarefa of tarefas" class="flex w-[100%] items-center justify-center">
+                <div class="w-[2%] flex justify-between items-center text-[12px] m-4">
+                    {{tarefa.hora}}
+                </div>
+                <div class="w-[95%] flex justify-between items-center p-6 m-2 bg-white rounded-2xl shadow-lg">
+                    <div class="w-[90%]">
+                        <h1 class="font-bold">{{tarefa.titulo}}</h1>
+                        <div class="ml-4">
+                            <p class="subpixel-antialiased">{{tarefa.descricao}}</p>
+                        </div>
+                    </div>
+                    <div class="flex w-[10%] mr-4">
+                        <i class="fa-solid fa-pen-to-square m-2 cursor-pointer" [routerLink]="['/cadastro-tarefa']" [queryParams]="{ idTarefa: tarefa.id }" style="color: #07d50a;"></i>
+                        <i class="fa-solid fa-trash m-2 cursor-pointer" (click)="remove(tarefa.id)" style="color: #ff0000;"></i>
+                    </div>
+                </div>
+            </div>  
+        </div>
+      </div>
+   </div>
+   <ngx-spinner
+   bdColor="rgba(51,51,51,0.8)"
+   size="medium"
+   color="#fff"
+   type="ball-scale-multiple"
+ >
+   <p style="font-size: 20px; color: white">Loading...</p>
+ </ngx-spinner>
+</body>
+</html>
