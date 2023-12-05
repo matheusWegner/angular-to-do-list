@@ -51,6 +51,7 @@ export class CadastroTarefaComponent {
       next: (response) => {
       },
       error: (response) => {
+        this.spinner.hide();
         let dialogRef = this.dialog.open(ConfirmDialog,
           { data: { 
               title: 'Erro', 

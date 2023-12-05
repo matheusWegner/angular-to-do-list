@@ -3,6 +3,7 @@ export class Tarefa {
     titulo:String; 
     data:String;
     hora:String;
+    horaFim:String;
     id:string;
     todoDia:boolean;
     constructor(){
@@ -11,6 +12,7 @@ export class Tarefa {
         this.data = "";
         this.hora = "";
         this.id = "";
+        this.horaFim = "";
         this.todoDia = false;
     }
 }

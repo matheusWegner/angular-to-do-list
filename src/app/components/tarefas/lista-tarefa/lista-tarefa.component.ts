@@ -55,6 +55,7 @@ export class ListaTarefaComponent {
            this.getTarefasUserByData();
         },
         error: (response) => {
+          this.spinner.hide();
           let dialogRef = this.dialog.open(ConfirmDialog,
             { data: { 
                 title: 'Erro', 
@@ -89,13 +90,15 @@ export class ListaTarefaComponent {
           this.tarefas = <Tarefa[]> response;
         },
         error: (response) => {
-            let dialogRef = this.dialog.open(ConfirmDialog,
-              { data: { 
-                  title: 'Erro', 
-                  message: "Ocorreu um erro código:" + response.status + " Erro: " + response.error.message,
-                  fechar: true
-              }
-           });
+          this.spinner.hide();
+          let message =  response.error?response.error.message:response.message;
+          let dialogRef = this.dialog.open(ConfirmDialog,
+            { data: { 
+                title: 'Erro', 
+                message: "Ocorreu um erro código:" + response.status + " Erro: " + message,
+                fechar: true
+            }
+          });
         },
         complete: () =>{
           this.spinner.hide();

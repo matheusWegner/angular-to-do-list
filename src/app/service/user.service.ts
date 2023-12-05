@@ -3,17 +3,22 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from '../model/User';
 import { TokenService } from './token.service';
 import {jwtDecode} from 'jwt-decode';
+import { HttpClient } from '@angular/common/http';
+import { environment } from "src/enviroments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private usuarioSubject = new BehaviorSubject<User>(new User());
-  constructor(private tokenService: TokenService) {
+  constructor(private tokenService: TokenService,
+              private http: HttpClient) {
     if (this.tokenService.hasToken()) {
       this.decodeJWT();
     }
   }
+ 
+  url = environment.URL_LOCAL;
 
   private decodeJWT() {
     const token = this.tokenService.returnToken();
@@ -37,5 +42,9 @@ export class UserService {
 
   estaLogado() {
     return this.tokenService.hasToken();
+  }
+
+  getImg() {
+    return this.http.get(this.url + 'user/getImg');
   }
 }
